@@ -1,0 +1,56 @@
+{
+  "name": "myenv",
+  "productName": "MyEnv",
+  "version": "1.1.0",
+  "description": "MyEnv: os ambientes de cada cliente (produção, homologação e desenvolvimento) organizados e a um Ctrl+K de distância.",
+  "author": "Cristovao Melchioretto",
+  "homepage": "https://github.com/CristovaoMelchioretto/myenv#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CristovaoMelchioretto/myenv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CristovaoMelchioretto/myenv/issues"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "icone": "node scripts/gerar-icone.js",
+    "dist": "electron-builder --win portable",
+    "dist:instalador": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "br.com.myenv",
+    "productName": "MyEnv",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "build/icon.png"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": "portable"
+    },
+    "portable": {
+      "artifactName": "MyEnv-${version}.exe"
+    },
+    "nsis": {
+      "artifactName": "MyEnv-Setup-${version}.exe",
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^45.3.3",
+    "electron-builder": "^26.18.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
