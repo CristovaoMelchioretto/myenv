@@ -4,6 +4,17 @@
 
 Quem atende vários clientes vive procurando a URL certa: produção, homologação, desenvolvimento, o portal de um, o painel de outro. O MyEnv reúne esses links por cliente, pinta cada ambiente com uma cor e deixa tudo a um `Ctrl+K` de distância. Assim fica mais difícil abrir produção quando a intenção era homologação.
 
+![Produção e homologação lado a lado no MyEnv](docs/imagens/lado-a-lado.png)
+
+<details>
+<summary>Lista de links por cliente</summary>
+
+![Links agrupados por cliente e coloridos por ambiente](docs/imagens/lista.png)
+
+</details>
+
+> As imagens usam clientes e páginas fictícios.
+
 ## Funcionalidades
 
 - **Ambientes dentro do app**: o link abre numa aba do próprio MyEnv, com a cor do ambiente na aba e no topo da página.
