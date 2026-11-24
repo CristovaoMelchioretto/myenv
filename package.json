@@ -1,7 +1,7 @@
 {
   "name": "myenv",
   "productName": "MyEnv",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "MyEnv: os ambientes de cada cliente (produção, homologação e desenvolvimento) organizados e a um Ctrl+K de distância.",
   "author": "Cristovao Melchioretto",
   "homepage": "https://github.com/CristovaoMelchioretto/myenv#readme",
