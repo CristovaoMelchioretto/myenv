@@ -3,6 +3,12 @@
 Todas as mudanças relevantes do MyEnv ficam registradas aqui.
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto usa [versionamento semântico](https://semver.org/lang/pt-BR/).
 
+## [Não publicado]
+
+### Adicionado
+
+- A janela abre com o tamanho, a posição e o estado (maximizada ou não) de quando foi fechada. Se o monitor onde ela estava não existir mais, volta ao tamanho padrão.
+
 ## [1.1.0] - 2026-11-18
 
 ### Adicionado

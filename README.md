@@ -58,7 +58,7 @@ Algumas coisas continuam funcionando só no navegador: senhas salvas, extensões
 
 ## Onde ficam os dados
 
-Os links ficam no armazenamento local do aplicativo, em `%APPDATA%\MyEnv`. Os logins feitos dentro do app ficam na mesma pasta, separados por link, e são apagados quando o link é excluído. O executável e a versão aberta no navegador guardam listas separadas. Para levar os links de um para o outro, use **Exportar** e **Importar**.
+Os links ficam no armazenamento local do aplicativo, em `%APPDATA%\MyEnv`. Os logins feitos dentro do app ficam na mesma pasta, separados por link, e são apagados quando o link é excluído. O tamanho e a posição da janela ficam em `janela.json`, na mesma pasta. O executável e a versão aberta no navegador guardam listas separadas. Para levar os links de um para o outro, use **Exportar** e **Importar**.
 
 Na primeira execução, o MyEnv copia sozinho os links do antigo Painel de Links (`%APPDATA%\Painel de Links`), se eles existirem.
 

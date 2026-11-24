@@ -2,6 +2,7 @@ const { app, BrowserWindow, Menu, ipcMain, nativeTheme, shell } = require("elect
 const fs = require("fs");
 const path = require("path");
 const { criarGerenciadorDePaineis, ehUrlWeb } = require("./paineis");
+const { lerEstadoDaJanela, gravarEstadoDaJanela } = require("./janela");
 
 const RAIZ = path.join(__dirname, "..");
 const PASTA_DADOS_ANTIGA = "Painel de Links";
@@ -36,9 +37,9 @@ function notificarTela(canal, dados) {
 }
 
 function criarJanela() {
+  const { maximizada, ...posicaoETamanho } = lerEstadoDaJanela();
   const janela = new BrowserWindow({
-    width: 1280,
-    height: 820,
+    ...posicaoETamanho,
     minWidth: 640,
     minHeight: 420,
     title: "MyEnv",
@@ -65,7 +66,11 @@ function criarJanela() {
     abrirNoNavegador(url);
   });
 
-  janela.once("ready-to-show", () => janela.show());
+  janela.once("ready-to-show", () => {
+    if (maximizada) janela.maximize();
+    janela.show();
+  });
+  janela.on("close", () => gravarEstadoDaJanela(janela));
   janela.on("closed", () => {
     janelaPrincipal = null;
     app.quit();
