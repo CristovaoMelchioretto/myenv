@@ -114,7 +114,9 @@ $env:GH_TOKEN = "<token>"
 npm run publicar
 ```
 
-Mova o que está em **Não publicado** no `CHANGELOG.md` para a nova versão antes do `npm version`. Para redesenhar o ícone, edite `scripts/gerar-icone.js` e rode `npm run icone`.
+Mova o que está em **Não publicado** no `CHANGELOG.md` para a nova versão antes do `npm version`.
+
+Para redesenhar o ícone, edite `scripts/gerar-icone.js` e rode `npm run icone`.
 
 ### Estrutura
 
@@ -137,6 +139,7 @@ build/
   icon.png             ícone do aplicativo
 scripts/
   gerar-icone.js       gera o build/icon.png
+  publicar.js          cria a release no GitHub e envia o instalador
 ```
 
 ### Arquitetura
