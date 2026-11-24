@@ -40,7 +40,8 @@
       "artifactName": "MyEnv-Setup-${version}.exe",
       "oneClick": false,
       "perMachine": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "uninstallDisplayName": "${productName}"
     },
     "publish": {
       "provider": "github",
