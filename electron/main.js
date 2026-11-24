@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { criarGerenciadorDePaineis, ehUrlWeb } = require("./paineis");
 const { lerEstadoDaJanela, gravarEstadoDaJanela } = require("./janela");
+const { iniciarAtualizacaoAutomatica } = require("./atualizacao");
 
 const RAIZ = path.join(__dirname, "..");
 const PASTA_DADOS_ANTIGA = "Painel de Links";
@@ -134,6 +135,7 @@ function iniciar() {
     janelaPrincipal = criarJanela();
     paineis = criarGerenciadorDePaineis(janelaPrincipal, notificarTela);
     janelaPrincipal.on("close", () => paineis.fecharTodos());
+    iniciarAtualizacaoAutomatica(() => janelaPrincipal);
   });
 }
 

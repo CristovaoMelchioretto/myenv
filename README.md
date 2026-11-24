@@ -26,16 +26,14 @@ Quem atende vários clientes vive procurando a URL certa: produção, homologaç
 - **Filtro por ambiente**: mostra só produção, só homologação etc.
 - **Tema claro e escuro**: alterne pelo botão de sol/lua. A escolha fica salva; sem escolha, o app segue o tema do sistema.
 - **Backup**: exporte e importe todos os links em um arquivo `.json`.
-- **Privacidade**: os dados ficam só no computador, sem conta, sem servidor e sem nada enviado para a internet.
+- **Privacidade**: os dados ficam só no computador, sem conta e sem servidor. O app só acessa a internet para abrir os seus links e para consultar se há versão nova no GitHub.
+- **Atualização automática**: quando sai uma versão nova, o app baixa em segundo plano e pergunta se pode reiniciar para atualizar.
 
 ## Instalação
 
-Baixe a versão mais recente na página de [Releases](../../releases):
+Baixe o `MyEnv-Setup-<versão>.exe` mais recente na página de [Releases](../../releases) e execute. Ele instala o app com atalho no menu Iniciar.
 
-| Arquivo | Uso |
-|---|---|
-| `MyEnv-<versão>.exe` | Portátil: é só executar, sem instalar. |
-| `MyEnv-Setup-<versão>.exe` | Instalador com atalho no menu Iniciar. |
+Depois de instalado, o MyEnv se atualiza sozinho: ao abrir (e a cada 6 horas com ele aberto), procura versão nova, baixa em segundo plano e pergunta se pode reiniciar. Quem escolher **Depois** recebe a atualização na próxima vez que fechar o app.
 
 > O executável ainda não tem assinatura digital, então o Windows SmartScreen pode mostrar um aviso na primeira execução. Para seguir, clique em **Mais informações → Executar assim mesmo**.
 
@@ -97,20 +95,34 @@ Também dá para abrir `src/index.html` direto no navegador, sem Electron.
 
 > Se o `npm start` rodar no terminal do VS Code e a janela não abrir, é porque o VS Code define `ELECTRON_RUN_AS_NODE=1`. Rode `Remove-Item Env:ELECTRON_RUN_AS_NODE` (PowerShell) antes ou use outro terminal.
 
-### Gerar os executáveis
+### Gerar o instalador
 
 ```bash
-npm run dist              # dist/MyEnv-<versão>.exe (portátil)
-npm run dist:instalador   # dist/MyEnv-Setup-<versão>.exe (instalador)
+npm run dist   # dist/MyEnv-Setup-<versão>.exe, sem publicar
 ```
 
-A versão vem do campo `version` do `package.json`. Para redesenhar o ícone, edite `scripts/gerar-icone.js` e rode `npm run icone`.
+A versão vem do campo `version` do `package.json`.
+
+### Lançar uma versão
+
+O `npm run publicar` gera o instalador e cria a release no GitHub com o `latest.yml`, que é o arquivo que os apps instalados consultam para saber se há versão nova. Ele precisa de um token do GitHub com permissão de escrita em *Contents* neste repositório, na variável `GH_TOKEN`.
+
+```powershell
+npm version patch          # 1.1.0 -> 1.1.1 (minor para funcionalidade nova); faz o commit e cria a tag
+git push --follow-tags
+$env:GH_TOKEN = "<token>"
+npm run publicar
+```
+
+Mova o que está em **Não publicado** no `CHANGELOG.md` para a nova versão antes do `npm version`. Para redesenhar o ícone, edite `scripts/gerar-icone.js` e rode `npm run icone`.
 
 ### Estrutura
 
 ```
 electron/
   main.js              processo principal: janela, canais de comunicação e migração de dados
+  janela.js            tamanho, posição e maximização da janela entre uma abertura e outra
+  atualizacao.js       atualização automática pelas releases do GitHub
   paineis.js           páginas embutidas: sessões, permissões, navegação e erros
   preload.js           ponte segura entre a tela e o processo principal
 src/

@@ -8,6 +8,11 @@ O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e 
 ### Adicionado
 
 - A janela abre com o tamanho, a posição e o estado (maximizada ou não) de quando foi fechada. Se o monitor onde ela estava não existir mais, volta ao tamanho padrão.
+- Atualização automática: o app procura versão nova nas releases do GitHub, baixa em segundo plano e pergunta se pode reiniciar para atualizar.
+
+### Removido
+
+- Versão portátil. Ela não consegue se atualizar sozinha, então o MyEnv passa a ser distribuído só pelo instalador.
 
 ## [1.1.0] - 2026-11-18
 

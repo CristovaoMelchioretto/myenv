@@ -18,8 +18,8 @@
   "scripts": {
     "start": "electron .",
     "icone": "node scripts/gerar-icone.js",
-    "dist": "electron-builder --win portable",
-    "dist:instalador": "electron-builder --win nsis"
+    "dist": "electron-builder --win nsis --publish never",
+    "publicar": "electron-builder --win nsis --publish always"
   },
   "build": {
     "appId": "br.com.myenv",
@@ -34,16 +34,19 @@
     ],
     "win": {
       "icon": "build/icon.png",
-      "target": "portable"
-    },
-    "portable": {
-      "artifactName": "MyEnv-${version}.exe"
+      "target": "nsis"
     },
     "nsis": {
       "artifactName": "MyEnv-Setup-${version}.exe",
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "CristovaoMelchioretto",
+      "repo": "myenv",
+      "releaseType": "release"
     }
   },
   "devDependencies": {
@@ -52,5 +55,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
   }
 }
